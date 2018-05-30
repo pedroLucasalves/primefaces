@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+	<div style="width: 100%; font-size: 36px; line-height: 48px; background-color: navy; color: white">My
+		Facelet Application</div>
+
+</body>
+<h:panelGrid columns="2">
+	<h:outputText value="Nome"></h:outputText>
+	<p:inputText value="#{ContatoControl.contato.nome }"></p:inputText>
+	<h:outputText value="Telefone"></h:outputText>
+	<p:inputMask value="#{ContatoControl.contato.telefone }" mask="(99) 9999-9999"></p:inputMask>
+	<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
+		update="contatos, panel"></p:commandButton>
+</h:panelGrid>
+</html>

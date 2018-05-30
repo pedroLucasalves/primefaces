@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+		<p:panel header="Formulário" id="panel">
+			<h:panelGrid columns="2">
+				<h:outputText value="Nome"></h:outputText>
+				<p:inputText value="#{ContatoControl.contato.nome }"></p:inputText>
+				<h:outputText value="Telefone"></h:outputText>
+				<p:inputMask value="#{ContatoControl.contato.telefone }" mask="(99) 9999-9999"></p:inputMask>
+				 <h:outputText value="Data de Nascimento"></h:outputText>
+				<p:inputMask value="#{ContatoControl.contato.dataNasci}" mask="99/99/9999"></p:inputMask>
+				<h:outputText value="Email"></h:outputText>
+				<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
+				
+				<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
+					update="contatos, panel"></p:commandButton>
+			</h:panelGrid>
+		</p:panel>
+
+		<p:dataTable id="contatos" var="contato" value="#{ContatoControl.contatos}" editable="true"
+			widgetVar="cellContato">
+			<f:facet name="header">
+           Lista de contatos
+       </f:facet>
+
+			<p:ajax event="rowEdit" listener="#{ContatoControl.onRowEdit}" update="contatos" />
+
+			<p:column headerText="Nome">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.nome}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{contato.nome}" style="width:96%" label="nome" />
+
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="telefone">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.telefone}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputMask value="#{contato.telefone}" mask="(99) 9999-9999"></p:inputMask>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Data de Nascimento">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.dataNasci}" >
+							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+						</h:outputText>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputMask value="#{contato.dataNasci}" mask="99/99/9999">
+							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+						</p:inputMask>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Email">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.email}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{contato.email}"></p:inputText>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column style="width:32px">
+				<p:rowEditor />
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>
