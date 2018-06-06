@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
 import br.com.senai.fatesg.primefaces.entidade.Contato;
 import br.com.senai.fatesg.primefaces.persistencia.ContatoDao;
+import br.com.senai.fatesg.primefaces.persistencia.ContatoDaoJpa;
 
 @Named("ContatoControl")
 @Scope("conversation")
@@ -60,12 +64,29 @@ public class ContatoControl {
 	public List<Contato> getContatos() {
 		return contatos;
 	}
+
 	public void onRowEdit(RowEditEvent event) {
-		
-	contato = (Contato) event.getObject();
-	contatoDao.alterar(contato);
-	
-	UtilFaces.addMensagemFaces("Alterado com sucesso!");
+
+		contato = (Contato) event.getObject();
+		contatoDao.alterar(contato);
+		contato = new Contato();
+		UtilFaces.addMensagemFaces("Alterado com sucesso!");
+	}
+
+	public void ExcluirContato(int id) {
+		try {
+			contatoDao.excluirPorId(id);
+			listar(null);
+			UtilFaces.addMensagemFaces("Excluido com sucesso!");
+		} catch (Exception e) {
+			UtilFaces.addMensagemFaces("Não foi possivel escluir");
+		}
+	}
+
+	public void onRowSelect(SelectEvent event) {
+		FacesMessage msg = new FacesMessage("Contato ", ((Contato) event.getObject()).getNome() + " selecionado ");
+		contato = ((Contato) event.getObject());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 }
