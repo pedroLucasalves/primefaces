@@ -20,7 +20,7 @@ public class Contato {
 
 	private String telefone;
 
-	private Date dataNasci;
+	private Date dataCadastro;
 
 	private String email;
 
@@ -40,12 +40,12 @@ public class Contato {
 		this.telefone = telefone;
 	}
 
-	public Date getDataNasci() {
-		return dataNasci;
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setDataNasci(Date dataNasci) {
-		this.dataNasci = dataNasci;
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public String getEmail() {

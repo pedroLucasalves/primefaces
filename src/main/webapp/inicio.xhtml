@@ -8,16 +8,24 @@
 
 		<h:form>
 			<p:growl id="messages" />
-
+			<!-- 	
+			<p:stack icon="/resources/imagens/cesta.png" expanded="true">
+				<p:menuitem value="Cliente" icon="/resources/imagens/fichadecontato.png" outcome="/contato.xhtml/" />
+				<p:menuitem value="Equipamento" icon="/resources/demo/images/dock/music.png" url="#" />
+				<p:menuitem value="Modalidade" icon="/resources/demo/images/dock/video.png" url="#" />
+				<p:menuitem value="Email" icon="/resources/demo/images/dock/email.png" url="#" />
+				<p:menuitem value="Portfolio" icon="/resources/demo/images/dock/portfolio.png" url="#" />
+			</p:stack>
+				 -->
 			<p:menubar>
 				<p:submenu label="Contato" icon="ui-icon-document">
-					<p:menuitem value="Novo Contato" icon="ui-icon-contact" outcome= "/contato.xhtml"/>
-					</p:submenu>
-				
+					<p:menuitem value="Novo Contato" icon="ui-icon-contact" outcome="/contato.xhtml" />
+				</p:submenu>
 
+			
 				<p:submenu label="Equipamento" icon="ui-icon-pencil">
-					<p:menuitem value="Novo Equipamento" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-					<p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+					<p:menuitem value="Novo Equipamento" icon="ui-icon-contact" outcome="/equipamento.xhtml"/>
+				
 				</p:submenu>
 
 				<p:submenu label="Help" icon="ui-icon-help">
@@ -34,8 +42,8 @@
 					<p:submenu label="Ajax" icon="ui-icon-refresh">
 						<p:menuitem value="Save" actionListener="#{InicioControl.save}" icon="ui-icon-disk"
 							update="messages" />
-						<p:menuitem value="Update" actionListener="#{InicioControl.update}" icon="ui-icon-arrowrefresh-1-w"
-							update="messages" />
+						<p:menuitem value="Update" actionListener="#{InicioControl.update}"
+							icon="ui-icon-arrowrefresh-1-w" update="messages" />
 					</p:submenu>
 					<p:submenu label="Non-Ajax" icon="ui-icon-newwin">
 						<p:menuitem value="Delete" actionListener="#{InicioControl.delete}" icon="ui-icon-close"
@@ -45,7 +53,7 @@
 
 
 				<f:facet name="options">
-					<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" url="/login.jsp"/>
+					<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" url="/login.jsp" />
 				</f:facet>
 			</p:menubar>
 		</h:form>

@@ -4,95 +4,92 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://www.ambientinformatica.com.br/jsf2"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="corpo">
-		<p:panel title="Contato">
-			<p:commandButton value="Novo" type="button" onclick="PF('dlg2').show();" style="width:96px" />
-
-			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
-
-				<h:panelGrid columns="2">
-					<h:outputText value="Nome"></h:outputText>
-					<p:inputText value="#{ContatoControl.contato.nome }" ></p:inputText>
-
-					<h:outputText value="Telefone"></h:outputText>
-					<p:inputMask value="#{ContatoControl.contato.telefone }" mask="(99) 9999-9999"></p:inputMask>
-
-					<h:outputText value="Data de Nascimento"></h:outputText>
-					<p:calendar value="#{ContatoControl.contato.dataNasci}"></p:calendar>
-
-					<h:outputText value="Email"></h:outputText>
-					<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
-
-					<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
-						update="contatos"/>
-						
-				</h:panelGrid>																	
-			</p:dialog>
-		</p:panel>
 
 
-		<p:dataTable id="contatos" var="contato" value="#{ContatoControl.contatos}" editable="true"
-			widgetVar="cellContato">
-			<f:facet name="header">
+		<h:panelGrid columns="2" style="margin-left: -3px; margin-top: 4px">
+				<h:outputText value="Nome"></h:outputText>
+				<p:inputText value="#{ContatoControl.contato.nome }" required="true"
+					requiredMessage="Nome obrigatorio"></p:inputText>
+
+				<h:outputText value="Telefone"></h:outputText>
+				<p:inputMask value="#{ContatoControl.contato.telefone }" mask="(99) 9999-9999"></p:inputMask>
+
+				<h:outputText value="Data de Cadastro"></h:outputText>
+				<p:calendar value="#{ContatoControl.contato.dataCadastro}" required="true"
+					requiredMessage="Data Obrigatoria"></p:calendar>
+
+				<h:outputText value="Email"></h:outputText>
+				<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
+
+				<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
+					update="contatos" />
+
+			</h:panelGrid>
+
+
+
+			<p:dataTable id="contatos" var="contato" value="#{ContatoControl.contatos}" editable="true"
+				widgetVar="cellContato">
+				<f:facet name="header">
            Lista de contatos
        </f:facet>
 
-			<p:ajax event="rowEdit" listener="#{ContatoControl.onRowEdit}" update="contatos" />
+				<p:ajax event="rowEdit" listener="#{ContatoControl.onRowEdit}" update="contatos" />
 
-			<p:column headerText="Nome">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{contato.nome}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{contato.nome}" style="width:96%" label="nome" />
+				<p:column headerText="Nome">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{contato.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{contato.nome}" style="width:96%" label="nome" />
 
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="telefone">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{contato.telefone}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputMask value="#{contato.telefone}" mask="(99) 9999-9999"></p:inputMask>
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="telefone">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{contato.telefone}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask value="#{contato.telefone}" mask="(99) 9999-9999"></p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Data de Nascimento">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{contato.dataNasci}">
-							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-						</h:outputText>
-					</f:facet>
-					<f:facet name="input">
-						<p:calendar value="#{contato.dataNasci}">
-						</p:calendar>
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Data de Nascimento">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{contato.dataCadastro}">
+								<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{contato.dataCadastro}">
+							</p:calendar>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Email">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{contato.email}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{contato.email}"></p:inputText>
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			<p:column style="width:32px">
-				<p:rowEditor />
-			</p:column>
-			<p:column headerText="Excluir">
-				<p:commandButton title="Excluir" update="contatos"
-					actionListener="#{ContatoControl.ExcluirContato(contato.id)}" />
-			</p:column>
-		</p:dataTable>
-
+				<p:column headerText="Email">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{contato.email}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{contato.email}"></p:inputText>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Editar">
+					<p:rowEditor />
+				</p:column>
+				<p:column headerText="Excluir">
+					<p:commandButton title="Excluir" update="contatos"
+						actionListener="#{ContatoControl.ExcluirContato(contato.id)}" />
+				</p:column>
+			</p:dataTable>
 	</ui:define>
 </ui:composition>

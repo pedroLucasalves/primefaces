@@ -1,7 +1,71 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<body>
-<div style="width:100%;font-size:36px;line-height:48px;background-color:navy;color:white">My Facelet Application</div>
-</body>
-</html>
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+
+		<p:panel title="Equipamento">
+			<p:commandButton value="Novo" type="button" onclick="PF('dlg2').show();"/>
+
+			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
+
+				<h:panelGrid columns="2">
+					<h:outputText value="Nome"></h:outputText>
+					<p:inputText value="#{Equipamento.equipamento.nome }"></p:inputText>
+
+					<h:outputText value="Aquisição"></h:outputText>
+					<p:calendar value="#{Equipamento.equipamento.aquisicao }" ></p:calendar>
+
+					<p:commandButton actionListener="#{EquipamentoControl.confirmar }" value="Confirmar"
+						update="equipamentos" />
+
+				</h:panelGrid>
+			</p:dialog>
+		</p:panel>
+
+
+		<p:dataTable id="equipamentos" var="equipamento" value="#{EquipamentoControl.equipamentos}" editable="true"
+			widgetVar="cellEquipamento">
+			<f:facet name="header">
+           Lista de Equipamentos
+       </f:facet>
+
+			<p:ajax event="rowEdit" listener="#{EquipamentoControl.alterar}" update="equipamentos" />
+
+			<p:column headerText="Nome">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{equipamento.nome}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{equipamento.nome}" style="width:96%" label="nome" />
+
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Aquisicao">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{equipamento.aquisicao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:calendar value="#{equipamento.aquisicao}" ></p:calendar>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			
+			<p:column headerText="Editar">
+				<p:rowEditor />
+			</p:column>
+			<p:column headerText="Excluir">
+				<p:commandButton title="Excluir" update="equipamentos"
+					actionListener="#{EquipamentoControl.Excluir(equipamento.id)}" />
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>

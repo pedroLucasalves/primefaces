@@ -66,11 +66,14 @@ public class ContatoControl {
 	}
 
 	public void onRowEdit(RowEditEvent event) {
-
+		try {
 		contato = (Contato) event.getObject();
 		contatoDao.alterar(contato);
 		contato = new Contato();
 		UtilFaces.addMensagemFaces("Alterado com sucesso!");
+		}catch(Exception e){
+			UtilFaces.addMensagemFaces("Não foi possivel Editar");
+		}
 	}
 
 	public void ExcluirContato(int id) {
@@ -79,7 +82,7 @@ public class ContatoControl {
 			listar(null);
 			UtilFaces.addMensagemFaces("Excluido com sucesso!");
 		} catch (Exception e) {
-			UtilFaces.addMensagemFaces("Não foi possivel escluir");
+			UtilFaces.addMensagemFaces("Não foi possivel excluir");
 		}
 	}
 
