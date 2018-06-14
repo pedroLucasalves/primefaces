@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import br.com.senai.fatesg.primefaces.util.Sexo;
+
 @Entity
 public class Contato {
 
@@ -23,6 +25,28 @@ public class Contato {
 	private Date dataCadastro;
 
 	private String email;
+	
+	private Sexo sexo;
+	
+	private String cpf;
+	
+	
+	
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public String getNome() {
 		return nome;
