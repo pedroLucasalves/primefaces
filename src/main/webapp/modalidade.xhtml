@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+
+
+		<p:panel title="Modalidade">
+			<p:commandButton value="Novo" type="button" onclick="PF('dlg2').show();"
+				icon="/resources/imagens/adicionar.png" style="heigth:150 ;width: 100px" />
+
+			<p:button value="Home" outcome="inicio.xhtml" style="margin-left:calc(100% - 250px)" />
+
+
+
+			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
+
+				<h:panelGrid columns="2">
+					<h:outputText value="Nome"></h:outputText>
+					<p:inputText value="#{ModalidadeControl.modalidade.descricao }" required="true"
+						requiredMessage="descricao obrigatoria"></p:inputText>
+
+					<h:outputText value="Valor"></h:outputText>
+					<p:inputNumber value="#{ModalidadeControl.modalidade.valorMensal}"></p:inputNumber>
+
+					<p:commandButton actionListener="#{ModalidadeControl.confirmar }" value="Confirmar"
+						update="modalidades" />
+
+				</h:panelGrid>
+
+			</p:dialog>
+		</p:panel>
+
+
+		<p:dataTable id="modalidades" var="modalidade" value="#{ModalidadeControl.modalidades}"
+			editable="true" widgetVar="cellModalidade">
+			<f:facet name="header">
+          				 Lista de Modalidades
+      		 </f:facet>
+
+			<p:ajax event="rowEdit" listener="#{ModalidadeControl.onRowEdit}" update="modalidades" />
+
+			<p:column headerText="descricao">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{modalidade.descricao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{modalidade.descricao}" style="width:96%" label="nome" />
+
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Valor Mensal">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{modalidade.valorMensal}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{modalidade.valorMensal}"></p:inputNumber>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column style="width:60px" headerText="Editar">
+				<p:rowEditor />
+			</p:column>
+
+			<p:column style="width:60px;" headerText="Excluir">
+				<p:commandButton icon="ui-icon-trash" title="Excluir"
+					actionListener="#{ModalidadeControl.ExcluirModalidade(modalidade.id)}" update="modalidades">
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>

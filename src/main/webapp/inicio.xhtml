@@ -24,37 +24,31 @@
 						<p:menuitem value="Incluir Usuario" icon="ui-icon-contact" outcome="/usuario.xhtml" />
 					</p:submenu>
 				</p:submenu>
-			
 
-			<p:submenu label="Equipamento" icon="ui-icon-pencil">
-				<p:menuitem value="Novo Equipamento" icon="ui-icon-contact" outcome="/equipamento.xhtml" />
 
-			</p:submenu>
+				<p:submenu label="Equipamento" icon="ui-icon-document">
+					<p:menuitem value="Novo Equipamento" icon="ui-icon-contact" outcome="/equipamento.xhtml" />
 
-			<p:submenu label="Modalidade" icon="ui-icon-help">
-				<p:menuitem value="Incluir Modalidade" url="#" />
-				<p:submenu label="Search" icon="ui-icon-search">
-					<p:submenu label="Text">
-						<p:menuitem value="Workspace" url="#" />
+				</p:submenu>
+
+				<p:submenu label="Modalidade" icon="ui-icon-pencil">
+					<p:menuitem value="Incluir Modalidade" icon="ui-icon-contact" outcome="/modalidade.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="Financeiro" icon="ui-icon-gear">
+					<p:submenu label="Ajax" icon="ui-icon-refresh">
+						<p:menuitem value="Save" actionListener="#{InicioControl.save}" icon="ui-icon-disk"
+							update="messages" />
+						<p:menuitem value="Update" actionListener="#{InicioControl.update}"
+							icon="ui-icon-arrowrefresh-1-w" update="messages" />
 					</p:submenu>
-					<p:menuitem value="File" url="#" />
+					<p:submenu label="Ficha" icon="ui-icon-newwin">
+						<p:menuitem value="Ficha de Exercicio" actionListener="#{InicioControl.delete}" icon="ui-icon-disk"
+							update="messages" ajax="false" />
+					</p:submenu>
 				</p:submenu>
-			</p:submenu>
 
-			<p:submenu label="Financeiro" icon="ui-icon-gear">
-				<p:submenu label="Ajax" icon="ui-icon-refresh">
-					<p:menuitem value="Save" actionListener="#{InicioControl.save}" icon="ui-icon-disk"
-						update="messages" />
-					<p:menuitem value="Update" actionListener="#{InicioControl.update}"
-						icon="ui-icon-arrowrefresh-1-w" update="messages" />
-				</p:submenu>
-				<p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-					<p:menuitem value="Delete" actionListener="#{InicioControl.delete}" icon="ui-icon-close"
-						update="messages" ajax="false" />
-				</p:submenu>
-			</p:submenu>
-
-			</p:menubar>	
+			</p:menubar>
 		</h:form>
 
 	</ui:define>

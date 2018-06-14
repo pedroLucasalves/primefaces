@@ -19,6 +19,16 @@ public class Equipamento {
 
 	private Date aquisicao;
 
+	private String QtdEquipamento;
+
+	public String getQtdEquipamento() {
+		return QtdEquipamento;
+	}
+
+	public void setQtdEquipamento(String qtdEquipamento) {
+		QtdEquipamento = qtdEquipamento;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}

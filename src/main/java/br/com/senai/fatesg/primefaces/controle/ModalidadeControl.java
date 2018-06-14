@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
-import br.com.senai.fatesg.primefaces.entidade.Contato;
 import br.com.senai.fatesg.primefaces.entidade.Modalidade;
-import br.com.senai.fatesg.primefaces.persistencia.ContatoDao;
 import br.com.senai.fatesg.primefaces.persistencia.ModalidadeDao;
 
 @Named("ModalidadeControl")
@@ -88,8 +86,7 @@ public class ModalidadeControl {
 	}
 
 	public void onRowSelect(SelectEvent event) {
-		FacesMessage msg = new FacesMessage("Modalidade ",
-				((Modalidade) event.getObject()).getDescricao() + " selecionado ");
+		FacesMessage msg = new FacesMessage("Modalidade ",((Modalidade) event.getObject()).getDescricao() + " selecionado ");
 		modalidade = ((Modalidade) event.getObject());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}

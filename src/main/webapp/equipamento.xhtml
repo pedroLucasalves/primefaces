@@ -11,7 +11,7 @@
 
 			<p:button value="Home" outcome="inicio.xhtml" style="margin-left:calc(100% - 250px)" />
 
-	
+
 
 			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
 
@@ -23,6 +23,9 @@
 					<h:outputText value="Data de Aquisição"></h:outputText>
 					<p:calendar value="#{EquipamentoControl.equipamento.aquisicao}" required="true"
 						requiredMessage="Data Obrigatorio"></p:calendar>
+
+					<h:outputText value="Quantidade de Equipamento"></h:outputText>
+					<p:inputText value="#{EquipamentoControl.equipamento.qtdEquipamento}"></p:inputText>
 
 					<p:commandButton actionListener="#{EquipamentoControl.confirmar }" value="Confirmar"
 						update="equipamentos" />
@@ -56,8 +59,8 @@
 			<p:column headerText="Data Aquisicao">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{equipamento.aquisicao}" >
-						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+						<h:outputText value="#{equipamento.aquisicao}">
+							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
 						</h:outputText>
 					</f:facet>
 					<f:facet name="input">
@@ -66,6 +69,16 @@
 				</p:cellEditor>
 			</p:column>
 
+			<p:column headerText="Quantidade de Equipamento">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{equipamento.qtdEquipamento}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{equipamento.qtdEquipamento}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+			</p:column>
 
 			<p:column style="width:60px;" headerText="Editar">
 				<p:rowEditor />

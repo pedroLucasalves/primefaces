@@ -21,8 +21,9 @@
 					<p:inputText value="#{ContatoControl.contato.nome }" required="true"
 						requiredMessage="Nome obrigatorio"></p:inputText>
 
-					<h:outputText value="Telefone"></h:outputText>
-					<p:inputMask value="#{ContatoControl.contato.telefone }" mask="(99) 9999-9999"></p:inputMask>
+					<h:outputText value="CPF"></h:outputText>
+					<p:inputMask value="#{ContatoControl.contato.cpf}" mask="999.999.999-99" required="true"
+						requiredMessage="CPF Obrigatorio"></p:inputMask>
 
 					<h:outputText value="Data de Cadastro"></h:outputText>
 					<p:calendar value="#{ContatoControl.contato.dataCadastro}" required="true"
@@ -30,6 +31,7 @@
 
 					<h:outputText value="Email"></h:outputText>
 					<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
+
 
 					<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
 						update="contatos" />
@@ -43,10 +45,21 @@
 		<p:dataTable id="contatos" var="contato" value="#{ContatoControl.contatos}" editable="true"
 			widgetVar="cellContato">
 			<f:facet name="header">
-          				 Lista de contatos
+          				 Lista de Pessoas
       		 </f:facet>
 
 			<p:ajax event="rowEdit" listener="#{ContatoControl.onRowEdit}" update="contatos" />
+
+			<p:column headerText="ID" style="heigth 50;width:50px">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:outputText valeu="#{contato.id}"></h:outputText>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
 
 			<p:column headerText="Nome">
 				<p:cellEditor>
@@ -55,11 +68,20 @@
 					</f:facet>
 					<f:facet name="input">
 						<p:inputText value="#{contato.nome}" style="width:96%" label="nome" />
-
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
+			<p:column headerText="CPF">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.cpf}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputMask value="#{contato.cpf}" mask="999.999.999-99"></p:inputMask>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
 			<p:column headerText="telefone">
 				<p:cellEditor>
 					<f:facet name="output">
