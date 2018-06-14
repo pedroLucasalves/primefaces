@@ -5,65 +5,75 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="corpo">
 
-
 		<p:panel title="Equipamento">
-			<p:commandButton value="Novo" type="button" onclick="PF('dlg2').show();"/>
+			<p:commandButton value="Novo" type="button" onclick="PF('dlg2').show();"
+				icon="/resources/imagens/adicionar.png" style="heigth:150 ;width: 100px" />
+
+			<p:button value="Home" outcome="inicio.xhtml" style="margin-left:calc(100% - 250px)" />
+
+	
 
 			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
 
 				<h:panelGrid columns="2">
-					<h:outputText value="Nome"></h:outputText>
-					<p:inputText value="#{Equipamento.equipamento.nome }"></p:inputText>
+					<h:outputText value="Descricao"></h:outputText>
+					<p:inputText value="#{EquipamentoControl.equipamento.descricao}" required="true"
+						requiredMessage="descricao obrigatorio"></p:inputText>
 
-					<h:outputText value="Aquisição"></h:outputText>
-					<p:calendar value="#{Equipamento.equipamento.aquisicao }" ></p:calendar>
+					<h:outputText value="Data de Aquisição"></h:outputText>
+					<p:calendar value="#{EquipamentoControl.equipamento.aquisicao}" required="true"
+						requiredMessage="Data Obrigatorio"></p:calendar>
 
 					<p:commandButton actionListener="#{EquipamentoControl.confirmar }" value="Confirmar"
 						update="equipamentos" />
 
 				</h:panelGrid>
+
 			</p:dialog>
 		</p:panel>
 
 
-		<p:dataTable id="equipamentos" var="equipamento" value="#{EquipamentoControl.equipamentos}" editable="true"
-			widgetVar="cellEquipamento">
+		<p:dataTable id="equipamentos" var="equipamento" value="#{EquipamentoControl.equipamentos}"
+			editable="true" widgetVar="cellEquipamento">
 			<f:facet name="header">
            Lista de Equipamentos
        </f:facet>
 
-			<p:ajax event="rowEdit" listener="#{EquipamentoControl.alterar}" update="equipamentos" />
+			<p:ajax event="rowEdit" listener="#{EquipamentoControl.onRowEdit}" update="equipamentos" />
 
 			<p:column headerText="Nome">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{equipamento.nome}" />
+						<h:outputText value="#{equipamento.descricao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{equipamento.nome}" style="width:96%" label="nome" />
+						<p:inputText value="#{equipamento.descricao}" style="width:96%" label="nome" />
 
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Aquisicao">
+			<p:column headerText="Data Aquisicao">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{equipamento.aquisicao}" />
+						<h:outputText value="#{equipamento.aquisicao}" >
+						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+						</h:outputText>
 					</f:facet>
 					<f:facet name="input">
-						<p:calendar value="#{equipamento.aquisicao}" ></p:calendar>
+						<p:calendar value="#{equipamento.aquisicao}"></p:calendar>
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
-			
-			<p:column headerText="Editar">
+
+			<p:column style="width:60px;" headerText="Editar">
 				<p:rowEditor />
 			</p:column>
-			<p:column headerText="Excluir">
-				<p:commandButton title="Excluir" update="equipamentos"
-					actionListener="#{EquipamentoControl.Excluir(equipamento.id)}" />
+			<p:column style="width:60px;" headerText="Excluir">
+				<p:commandButton icon="ui-icon-trash" title="Excluir"
+					actionListener="#{EquipamentoControl.ExcluirEquipamento(equipamento.id)}" update="equipamentos">
+				</p:commandButton>
 			</p:column>
 		</p:dataTable>
 
