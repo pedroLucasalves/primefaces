@@ -17,8 +17,8 @@
 <body>
 
 	<div class="wrapper" >
-		<div class="header" style="background:#32c3f1">
-			<div class="container" style="border-top:#32c3f1">
+		<div class="header" style="background:#26a8d2">
+			<div class="container" style="border-top:#26a8d2">
 				<div class="row branding">	
 					<div class="span6">
 						<h1 class="pull-left">
@@ -48,7 +48,7 @@
 						%>
 						<label>Login</label> <input type="text" id="usuario" name="j_username" class="span3" /> <label>Senha</label>
 						<input id="senha" name="j_password" type="password" class="span3" /> <input
-							class="btn btn-large btn-success btnSignup" type="submit" value="Entrar" style="background:#32c3f1"/>
+							class="btn btn-large btn-success btnSignup" type="submit" value="Entrar" style="background:#26a8d2"/>
 					</form>
 				</div>
 
