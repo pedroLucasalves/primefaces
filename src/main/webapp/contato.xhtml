@@ -25,14 +25,24 @@
 					<p:inputMask value="#{ContatoControl.contato.cpf}" mask="999.999.999-99" required="true"
 						requiredMessage="CPF Obrigatorio"></p:inputMask>
 
+					<h:outputText value="Sexo"></h:outputText>
+					<p:selectOneRadio id="Sexo" value="#{ContatoControl.contato.sexo}">
+						<f:selectItem itemLabel="F" itemValue="FEMININO" />
+						<f:selectItem itemLabel="M" itemValue="MASCULINO" />
+					</p:selectOneRadio>
+
+
 					<h:outputText value="Data de Cadastro"></h:outputText>
 					<p:calendar value="#{ContatoControl.contato.dataCadastro}" required="true"
 						requiredMessage="Data Obrigatorio"></p:calendar>
 
+					<h:outputText value="Telefone"></h:outputText>
+					<p:inputMask value="#{ContatoControl.contato.telefone}" mask="9999-9999"></p:inputMask>
+
 					<h:outputText value="Email"></h:outputText>
-					<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
+					<p:inputText value="#{ContatoControl.contato.email}">
 
-
+					</p:inputText>
 					<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
 						update="contatos" />
 
@@ -82,16 +92,6 @@
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
-			<p:column headerText="telefone">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{contato.telefone}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputMask value="#{contato.telefone}" mask="(99) 9999-9999"></p:inputMask>
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
 
 			<p:column headerText="Data de Nascimento">
 				<p:cellEditor>
@@ -103,6 +103,31 @@
 					<f:facet name="input">
 						<p:calendar value="#{contato.dataCadastro}">
 						</p:calendar>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Sexo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.sexo}"></h:outputText>
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu value="#{Contato.sexo}" style="width:125px">
+							<f:selectItem itemLabel="FEMININO" itemValue="FEMININO" />
+							<f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="telefone">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{contato.telefone}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputMask value="#{contato.telefone}" mask="(99) 9999-9999"></p:inputMask>
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
@@ -120,6 +145,7 @@
 			<p:column style="width:60px" headerText="Editar">
 				<p:rowEditor />
 			</p:column>
+
 
 			<p:column style="width:60px;" headerText="Excluir">
 				<p:commandButton icon="ui-icon-trash" title="Excluir"

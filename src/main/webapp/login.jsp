@@ -16,14 +16,14 @@
 </head>
 <body>
 
-	<div class="wrapper" >
-		<div class="header" style="background:#26a8d2">
-			<div class="container" style="border-top:#26a8d2">
-				<div class="row branding">	
+	<div class="wrapper">
+		<div class="header" style="background: #26a8d2">
+			<div class="container" style="border-top: #26a8d2">
+				<div class="row branding">
 					<div class="span6">
 						<h1 class="pull-left">
 							<a href="index.html"><strong>Academia</strong></a>
-							
+
 						</h1>
 					</div>
 				</div>
@@ -32,28 +32,30 @@
 		</div>
 	</div>
 	<div class="container content">
-		
 
 
-			
-			
-				<div class="well quickSignupForm" style="width:275px; margin-left:calc(100% - 290px)">
-					
-					<form action="j_spring_security_check" method="post">
-						<h3>Acesso ao Sistema</h3>
-						<%
-							if (request.getParameter("msg") != null) {
-								out.print("<span style='color: red;font-weight: bold;'>Usuário ou senha incorretos</span>");
-							}
-						%>
-						<label>Login</label> <input type="text" id="usuario" name="j_username" class="span3" /> <label>Senha</label>
-						<input id="senha" name="j_password" type="password" class="span3" /> <input
-							class="btn btn-large btn-success btnSignup" type="submit" value="Entrar" style="background:#26a8d2"/>
-					</form>
-				</div>
 
 
-	
+
+		<div class="well quickSignupForm" style="width: 275px; margin-left: calc(100% - 290px)">
+
+			<form action="j_spring_security_check" method="post">
+				<h3>Acesso ao Sistema</h3>
+
+				<%
+					if (request.getParameter("msg") != null) {
+						out.print("<span style='color: red;font-weight: bold;'>Usuário ou senha incorretos</span>");
+					}
+				%>
+				<label>Login</label> <input type="text" id="usuario" name="j_username" class="span3" /> <label>Senha</label>
+				<input id="senha" name="j_password" type="password" class="span3" /> <input
+					class="btn btn-large btn-success btnSignup" type="submit" value="Entrar"
+					style="background: #26a8d2" />
+			</form>
+		</div>
+
+
+
 	</div>
 	<script>
 		document.getElementById("usuario").focus();

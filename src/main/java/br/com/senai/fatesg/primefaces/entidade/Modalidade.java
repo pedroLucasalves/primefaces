@@ -17,7 +17,7 @@ public class Modalidade {
 
 	private String descricao;
 
-	private float valorMensal;
+	private String valorMensal;
 
 	public String getDescricao() {
 		return descricao;
@@ -27,11 +27,11 @@ public class Modalidade {
 		this.descricao = descricao;
 	}
 
-	public double getValorMensal() {
+	public String getValorMensal() {
 		return valorMensal;
 	}
 
-	public void setValorMensal(float valor) {
+	public void setValorMensal(String valor) {
 		this.valorMensal = valor;
 	}
 

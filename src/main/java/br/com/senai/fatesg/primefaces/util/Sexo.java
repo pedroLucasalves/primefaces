@@ -10,7 +10,7 @@ public enum Sexo {
 	
 	public String toString() {
 		String old = super.toString();
-		return old.substring(0 , 1) + old.substring(1).toLowerCase();
+		return old.substring(1 , 2) + old.substring(1).toLowerCase();
 		
 	}
 }
