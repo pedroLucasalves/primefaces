@@ -40,9 +40,7 @@
 					<p:inputMask value="#{ContatoControl.contato.telefone}" mask="9999-9999"></p:inputMask>
 
 					<h:outputText value="Email"></h:outputText>
-					<p:inputText value="#{ContatoControl.contato.email}">
-
-					</p:inputText>
+					<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
 					<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
 						update="contatos" />
 
@@ -113,14 +111,14 @@
 						<h:outputText value="#{contato.sexo}"></h:outputText>
 					</f:facet>
 					<f:facet name="input">
-						<p:selectOneMenu value="#{Contato.sexo}" style="width:125px">
+						<p:selectOneMenu value="#{contato.sexo}" style="width:125px">
 							<f:selectItem itemLabel="FEMININO" itemValue="FEMININO" />
 							<f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO" />
 						</p:selectOneMenu>
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
-
+			
 			<p:column headerText="telefone">
 				<p:cellEditor>
 					<f:facet name="output">

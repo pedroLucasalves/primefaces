@@ -35,4 +35,7 @@ public class Modalidade {
 		this.valorMensal = valor;
 	}
 
+	public Integer getId() {
+		return id;
+	}
 }

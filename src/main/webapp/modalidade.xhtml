@@ -18,18 +18,16 @@
 			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
 
 				<h:panelGrid columns="2">
-					<h:outputText value="Nome"></h:outputText>
 					<p:inputText value="#{ModalidadeControl.modalidade.descricao }" required="true"
 						requiredMessage="descricao obrigatoria"></p:inputText>
 
-					<h:outputText value="Valor"></h:outputText>
-					<p:inputNumber value="#{ModalidadeControl.modalidade.valorMensal}" required="true" requiredMessage="Valor Obrigatorio"></p:inputNumber>
-					
-					<p:commandButton actionListener="#{ModalidadeControl.confirmar }" value="Confirmar"
+					<h:outputText value="Valor Mensal"></h:outputText>
+					<p:inputNumber value="#{ModalidadeControl.modalidade.valorMensal}" required="true"
+						requiredMessage="Valor Obrigatorio"></p:inputNumber>
+						
+					<p:commandButton actionListener="#{ModalidadeControl.confirmar}" value="Confirmar"
 						update="modalidades" />
-
 				</h:panelGrid>
-
 			</p:dialog>
 		</p:panel>
 
@@ -43,6 +41,9 @@
 
 			<p:column headerText="Descricao" sortBy="#{modalidade.descricao}">
 				<h:outputText value="#{modalidade.descricao}" />
+			</p:column>
+			<p:column headerText="Valor Mensal" sortBy="#{modalidade.valorMensal}">
+				<h:outputText value="#{modalidade.valorMensal}"></h:outputText>
 			</p:column>
 
 
