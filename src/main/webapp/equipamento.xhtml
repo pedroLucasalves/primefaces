@@ -20,10 +20,6 @@
 					<p:inputText value="#{EquipamentoControl.equipamento.descricao}" required="true"
 						requiredMessage="descricao obrigatorio"></p:inputText>
 
-					<h:outputText value="Data de Aquisição"></h:outputText>
-					<p:calendar value="#{EquipamentoControl.equipamento.aquisicao}" required="true"
-						requiredMessage="Data Obrigatorio"></p:calendar>
-
 					<h:outputText value="Quantidade de Equipamento"></h:outputText>
 					<p:inputText value="#{EquipamentoControl.equipamento.qtdEquipamento}"></p:inputText>
 
@@ -44,6 +40,17 @@
 
 			<p:ajax event="rowEdit" listener="#{EquipamentoControl.onRowEdit}" update="equipamentos" />
 
+			<p:column headerText="ID">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{equipamento.id}"></h:outputText>
+					</f:facet>
+					<f:facet name="input">
+						<h:outputText value="#{equipamento.id}"></h:outputText>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
 			<p:column headerText="Nome">
 				<p:cellEditor>
 					<f:facet name="output">
@@ -56,28 +63,15 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Data Aquisicao">
+			<p:column headerText="Quantidade de Equipamento">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{equipamento.aquisicao}">
-							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-						</h:outputText>
+						<h:outputText value="#{equipamento.qtdEquipamento}"></h:outputText>
 					</f:facet>
 					<f:facet name="input">
-						<p:calendar value="#{equipamento.aquisicao}"></p:calendar>
+						<p:inputText value="#{equipamento.qtdEquipamento}"></p:inputText>
 					</f:facet>
 				</p:cellEditor>
-			</p:column>
-
-			<p:column headerText="Quantidade de Equipamento">
-			<p:cellEditor>
-				<f:facet name="output">
-					<h:outputText value="#{equipamento.qtdEquipamento}"></h:outputText>
-				</f:facet>
-				<f:facet name="input">
-					<p:inputText value="#{equipamento.qtdEquipamento}"></p:inputText>
-				</f:facet>
-			</p:cellEditor>
 			</p:column>
 
 			<p:column style="width:60px;" headerText="Editar">

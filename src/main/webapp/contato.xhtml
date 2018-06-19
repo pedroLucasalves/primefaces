@@ -26,7 +26,8 @@
 						requiredMessage="CPF Obrigatorio"></p:inputMask>
 
 					<h:outputText value="Sexo"></h:outputText>
-					<p:selectOneRadio id="Sexo" value="#{ContatoControl.contato.sexo}">
+					<p:selectOneRadio id="Sexo" value="#{ContatoControl.contato.sexo}" required="true"
+						requiredMessage="Sexo Obrigatorio">
 						<f:selectItem itemLabel="F" itemValue="FEMININO" />
 						<f:selectItem itemLabel="M" itemValue="MASCULINO" />
 					</p:selectOneRadio>
@@ -39,8 +40,12 @@
 					<h:outputText value="Telefone"></h:outputText>
 					<p:inputMask value="#{ContatoControl.contato.telefone}" mask="9999-9999"></p:inputMask>
 
-					<h:outputText value="Email"></h:outputText>
-					<p:inputText value="#{ContatoControl.contato.email}"></p:inputText>
+					<h:outputText value="E-mail"></h:outputText>
+					<p:inputText maxlength="50" value="#{ContatoControl.contato.email}" required="true"
+						requiredMessage="Email Obrigatorio" validatorMessage="Email invalido">
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+					</p:inputText>
 					<p:commandButton actionListener="#{ContatoControl.confirmar }" value="Confirmar"
 						update="contatos" />
 
@@ -118,7 +123,7 @@
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
-			
+
 			<p:column headerText="telefone">
 				<p:cellEditor>
 					<f:facet name="output">
@@ -148,6 +153,7 @@
 			<p:column style="width:60px;" headerText="Excluir">
 				<p:commandButton icon="ui-icon-trash" title="Excluir"
 					actionListener="#{ContatoControl.ExcluirContato(contato.id)}" update="contatos">
+				
 				</p:commandButton>
 			</p:column>
 		</p:dataTable>

@@ -17,8 +17,6 @@ public class Equipamento {
 
 	private String descricao;
 
-	private Date aquisicao;
-
 	private String QtdEquipamento;
 
 	public String getQtdEquipamento() {
@@ -35,14 +33,6 @@ public class Equipamento {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Date getAquisicao() {
-		return aquisicao;
-	}
-
-	public void setAquisicao(Date aquisicao) {
-		this.aquisicao = aquisicao;
 	}
 
 	public Integer getId() {
