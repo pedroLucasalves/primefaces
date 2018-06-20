@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
@@ -64,7 +65,7 @@ public class ModalidadeControl {
 		return modalidades;
 	}
 
-	public void onRowEdit(RowEditEvent event) {
+	public void Salvar(RowEditEvent event) {
 		try {
 			modalidade = (Modalidade) event.getObject();
 			modalidadeDao.alterar(modalidade);
@@ -86,8 +87,15 @@ public class ModalidadeControl {
 	}
 
 	public void onRowSelect(SelectEvent event) {
-		FacesMessage msg = new FacesMessage("Modalidade ",((Modalidade) event.getObject()).getDescricao() + " selecionado ");
+		FacesMessage msg = new FacesMessage("Modalidade ",
+				((Modalidade) event.getObject()).getDescricao() + " selecionado ");
 		modalidade = ((Modalidade) event.getObject());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onRowUnselect(UnselectEvent event) {
+		FacesMessage msg = new FacesMessage("Modalidade Unselected",
+				((Modalidade) event.getObject()).getId() + "selecionado");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 

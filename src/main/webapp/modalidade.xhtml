@@ -5,10 +5,8 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="corpo">
 
-
-
 		<p:panel title="Modalidade">
-			<p:commandButton value="Novo" type="button" onclick="PF('dlg2').show();"
+			<p:commandButton value="Novo Registro" type="button" onclick="PF('dlg2').show();"
 				icon="/resources/imagens/adicionar.png" style="heigth:150 ;width: 100px" />
 
 			<p:button value="Home" outcome="inicio.xhtml" style="margin-left:calc(100% - 250px)" />
@@ -18,37 +16,61 @@
 			<p:dialog header="Formulário" widgetVar="dlg2" modal="true" dynamic="true">
 
 				<h:panelGrid columns="2">
-					<p:inputText value="#{ModalidadeControl.modalidade.descricao }" required="true"
-						requiredMessage="descricao obrigatoria"></p:inputText>
+					<h:outputText value="Descricao"></h:outputText>
+					<p:inputText value="#{ModalidadeControl.modalidade.descricao}" required="true"
+						requiredMessage="descricao obrigatorio"></p:inputText>
 
 					<h:outputText value="Valor Mensal"></h:outputText>
-					<p:inputNumber value="#{ModalidadeControl.modalidade.valorMensal}" required="true"
-						requiredMessage="Valor Obrigatorio"></p:inputNumber>
-						
-					<p:commandButton actionListener="#{ModalidadeControl.confirmar}" value="Confirmar"
+					<p:inputNumber value="#{ModalidadeControl.modalidade.valorMensal}"></p:inputNumber>
+
+					<p:commandButton actionListener="#{ModalidadeControl.confirmar }" value="Confirmar"
 						update="modalidades" />
+
 				</h:panelGrid>
+
 			</p:dialog>
 		</p:panel>
 
-		<p:dataTable var="modalidade" value="#{modalidadeControl.modalidades}" style="margin-bottom:40px">
+
+		<p:dataTable id="modalidades" var="modalidade" value="#{ModalidadeControl.modalidades}">
 			<f:facet name="header">
-           Lista de Modalidade
-        </f:facet>
-			<p:column headerText="Id" sortBy="#{modalidade.id}">
-				<h:outputText value="#{Modalidade.id}" />
+           Lista de  Modalidades
+       </f:facet>
+
+			<p:column headerText="ID">
+				<f:facet name="output">
+					<h:outputText value="#{modalidade.id}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<h:outputText value="#{modalidadeid}"></h:outputText>
+				</f:facet>
 			</p:column>
 
-			<p:column headerText="Descricao" sortBy="#{modalidade.descricao}">
-				<h:outputText value="#{modalidade.descricao}" />
+			<p:column headerText="Descricao">
+				<f:facet name="output">
+					<h:outputText value="#{modalidade.descricao}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{modalidade.descricao}" style="width:96%" label="nome" />
+				</f:facet>
+
 			</p:column>
-			<p:column headerText="Valor Mensal" sortBy="#{modalidade.valorMensal}">
-				<h:outputText value="#{modalidade.valorMensal}"></h:outputText>
+			<p:column headerText="Valor Mensal">
+				<f:facet name="output">
+					<h:outputText value="#{modalidade.valorMensal}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{modalidade.valorMensal}"></p:inputText>
+				</f:facet>
 			</p:column>
 
-
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton update="modalidades" oncomplete="PF('modalidadeDialog').show()"
+					icon="ui-icon-search" title="View">
+					<f:setPropertyActionListener value="#{modalidade}" target="#{ModalidadeControl.modalidade}" />
+				</p:commandButton>
+			</p:column>
 		</p:dataTable>
-
 
 	</ui:define>
 </ui:composition>
