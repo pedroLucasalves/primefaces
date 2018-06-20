@@ -9,13 +9,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
+import br.com.senai.fatesg.primefaces.entidade.Contato;
 import br.com.senai.fatesg.primefaces.entidade.Modalidade;
 import br.com.senai.fatesg.primefaces.persistencia.ModalidadeDao;
 
@@ -76,7 +77,7 @@ public class ModalidadeControl {
 		}
 	}
 
-	public void ExcluirContato(int id) {
+	public void ExcluirModalidade(int id) {
 		try {
 			modalidadeDao.excluirPorId(id);
 			listar(null);
@@ -87,16 +88,9 @@ public class ModalidadeControl {
 	}
 
 	public void onRowSelect(SelectEvent event) {
-		FacesMessage msg = new FacesMessage("Modalidade ",
-				((Modalidade) event.getObject()).getDescricao() + " selecionado ");
+		FacesMessage msg = new FacesMessage("Modalidade ", ((Modalidade) event.getObject()).getId() + " selecionado ");
 		modalidade = ((Modalidade) event.getObject());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
 
-	public void onRowUnselect(UnselectEvent event) {
-		FacesMessage msg = new FacesMessage("Modalidade Unselected",
-				((Modalidade) event.getObject()).getId() + "selecionado");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-
 }

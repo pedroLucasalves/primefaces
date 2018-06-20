@@ -7,7 +7,7 @@
 
 		<p:panel title="Modalidade">
 			<p:commandButton value="Novo Registro" type="button" onclick="PF('dlg2').show();"
-			style="heigth:150 ;width: 13	0px" />
+				style="heigth:150 ;width: 130px" />
 
 			<p:button value="Home" outcome="inicio.xhtml" style="margin-left:calc(100% - 250px)" />
 
@@ -31,30 +31,58 @@
 			</p:dialog>
 		</p:panel>
 
-
-		<p:dataTable id="modalidades" var="modalidade" value="#{ModalidadeControl.modalidades}">
+		<p:dataTable id="modalidades" var="modalidade" value="#{ModalidadeControl.modalidades}"
+			editable="true" widgetVar="cellModalidade">
 			<f:facet name="header">
-           Lista de  Modalidades
+           Lista de Modalidades
        </f:facet>
+
+			<p:ajax event="rowEdit" listener="#{ModalidadeControl.Salvar}" update="modalidades" />
+
 			<p:column headerText="ID">
-				<h:outputText value="#{modalidade.id}"></h:outputText>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{modalidade.id}"></h:outputText>
+					</f:facet>
+					<f:facet name="input">
+						<h:outputText value="#{modalidade.id}"></h:outputText>
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Descricao">
-				<h:outputText value="#{modalidade.descricao}" />
+			<p:column headerText="Descrição">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{modalidade.descricao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{modalidade.descricao}" style="width:96%" label="nome" />
+
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Valor Mensal">
-				<h:outputText value="#{modalidade.valorMensal}"></h:outputText>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{modalidade.valorMensal}"></h:outputText>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{modalidade.valorMensal}"></p:inputText>
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
-			<p:column style="width:32px;text-align: center">
-				<p:commandButton update="modalidades" oncomplete="PF('modalidadeDialog').show()"
-					icon="ui-icon-search" title="View">
-					<f:setPropertyActionListener value="#{modalidade}" target="#{ModalidadeControl.modalidade}" />
+			<p:column style="width:60px;" headerText="Editar">
+				<p:rowEditor />
+			</p:column>
+			<p:column style="width:60px;" headerText="Excluir">
+				<p:commandButton icon="ui-icon-trash" title="Excluir"
+					actionListener="#{ModalidadeControl.ExcluirModalidade(modalidade.id)}" update="modalidades">
 				</p:commandButton>
 			</p:column>
 		</p:dataTable>
+
 
 	</ui:define>
 </ui:composition>

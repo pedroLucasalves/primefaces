@@ -87,7 +87,7 @@ public class ContatoControl {
 	}
 
 	public void onRowSelect(SelectEvent event) {
-		FacesMessage msg = new FacesMessage("Contato ", ((Contato) event.getObject()).getNome() + " selecionado ");
+		FacesMessage msg = new FacesMessage("Contato ", ((Contato) event.getObject()).getId() + " selecionado ");
 		contato = ((Contato) event.getObject());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
